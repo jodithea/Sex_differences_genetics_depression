@@ -1,0 +1,84 @@
+# Start by formatting all sumstats from each cohort consistently
+# Do this in an interactive session to check as go
+# CHR BP A1 A2 FREQA1 BETA SE P N MAF STUDY INFO
+# CHR is a number 1 - 22 and X
+# STUDY = 1 in each row - use in meta-analysis to count no. studies meta-analysed
+
+
+### AGDS ###
+
+AGDS_female=/path/AGDS_4_removed/sex_stratified/GWAS_AGDS_QSKIN_MDD_females_autosomes_and_X_QCed_INFO0.6_MAF0.01.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA", "SE", "P", "N", "MAF", "STUDY", "INFO"} 
+	NR>1 {print $3,$4,$5,$6,$7,$8,$9,$10,$11,$14,"1",$12}' ${AGDS_female} > AGDS_build37_MDD_female_sumstats.txt
+# MAF is minor allele freq calculated in all genepi QIMR cohorts
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' AGDS_build37_MDD_female_sumstats.txt > temp_AGDS.txt && mv temp_AGDS.txt AGDS_build37_MDD_female_sumstats.txt
+
+
+### UK Biobank ###
+
+UKB_female=/path/UKBiobank_combined2/sex_stratified/GWAS_UKB_depression_females_autosomes_and_X_QCed_INFO0.6_MAF0.01.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA", "SE", "P", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $2,$3,$4,$5,$6,$7,$8,$9,$10,$12,"1",$11}' ${UKB_female} > UKB_build37_MDD_female_sumstats.txt
+# MAF is provided by UK B - presumable minor allele freq calculated in entire UK B
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' UKB_build37_MDD_female_sumstats.txt > temp_UKB.txt && mv temp_UKB.txt UKB_build37_MDD_female_sumstats.txt
+
+
+
+### Bionic ###
+
+Bionic_female=/path/Bionic_Floris_results/Bionic_no_Blokland21/MRG_fastGWA_GRMeffbgen_mddsc_noblokland_females_10PC_full_AF001_Rsq060.fastGWA
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA", "SE", "P", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $1,$3,$4,$5,$18,$11,$12,$13,$6,$18,"1",$19}' ${Bionic_female} > Bionic_build37_MDD_female_sumstats.txt
+# MAF is minor allele frequency added by Floris using QCTools - MAF across all cohorts in Bionic. He says to filter on this rather than FREQA1 because multiple genotype files are merged after imputation and FREQA1 is not updated so it is not trustworthy
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' Bionic_build37_MDD_female_sumstats.txt > temp_Bionic.txt && mv temp_Bionic.txt Bionic_build37_MDD_female_sumstats.txt
+
+
+### Blokland et al., 2021 ###
+
+# Use gcOFF = genomic-correction OFF
+Blokland21_female_autosomes=/path/Blokland_2021_sumstats/meta_STDERR_mdd_eur_auto_F1_sexstratified_06_gcOFF_pgc+ipsych.txt
+Blokland21_female_Xchr=/path/Blokland_2021_sumstats/meta_STDERR_mdd_eur_xchr_F1_sexstratified_06_gcOFF_pgc+ipsych.txt
+
+# Combine autosomes and X chr
+cat ${Blokland21_female_autosomes} > Blokland21_build37_MDD_female_sumstats.txt
+tail -n +2 ${Blokland21_female_Xchr} >> Blokland21_build37_MDD_female_sumstats.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA", "SE", "P", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $16,$17,$2,$3,$4,$8,$9,$10,$18,$22,"1","NA"}' Blokland21_build37_MDD_female_sumstats.txt > temp_Blokland21.txt && mv temp_Blokland21.txt Blokland21_build37_MDD_female_sumstats.txt
+# FREQA1 is Overall Frequency Allele 1 across meta-analysis of all cohorts
+# MAF is minor allele frequency - not stated in README where from, presumably across all cohorts included in meta-analysis?
+# INFO was not provided in sumstats, presumable because imputation score was different in each cohort and they filtered on this before doing the meta-analysis.
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' Blokland21_build37_MDD_female_sumstats.txt > temp_Blokland21.txt && mv temp_Blokland21.txt Blokland21_build37_MDD_female_sumstats.txt
+
+
+
+### All Of Us ###
+
+AllOfUs_female=/path/AllOfUs_Pierre_results/Females/females_MDD_GWAS_maf001.fastGWA
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA", "SE", "P", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $1,$3,$4,$5,$7,$11,$12,$13,$6,"NA","1","NA"}' ${AllOfUs_female} > AllOfUs_build38_MDD_female_sumstats.txt
+# MAF is not available in sumstats
+# INFO is not available because it is whole genome sequencing data
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' AllOfUs_build38_MDD_female_sumstats.txt > temp_AllOfUs.txt && mv temp_AllOfUs.txt AllOfUs_build38_MDD_female_sumstats.txt
+
+
+
+### GLAD ###
+
+GLAD_female=/path/GLAD_Rujia_results/GLAD_mdd_female_fastGWA_batch_10pcs_maf001_info06_20240726.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA", "SE", "P", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $1,$3,$4,$5,$6,$7,$8,$9,$10,"NA","1",$11}' ${GLAD_female} > GLAD_build38_MDD_female_sumstats.txt
+# MAF is not available in sumstats
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' GLAD_build38_MDD_female_sumstats.txt > temp_GLAD.txt && mv temp_GLAD.txt GLAD_build38_MDD_female_sumstats.txt
+

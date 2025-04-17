@@ -1,0 +1,25 @@
+# Format meta-analysis summary statistics to input to FUMA's SNP2GENE
+# Column names are automatically detected based on the following headers (case insensitive).
+	# SNP | snpid | markername | rsID: rsID
+	# CHR | chromosome | chrom: chromosome
+	# BP | pos | position: genomic position (hg19)
+	# A1 | effect_allele | allele1 | alleleB: affected allele
+	# A2 | non_effect_allele | allele2 | alleleA: another allele
+	# P | pvalue | p-value | p_value | pval: P-value (Mandatory)
+	# OR: Odds Ratio
+	# Beta | be: Beta
+	# SE: Standard error
+
+sumstats=/path/03_Metal/Females/Metaanalysis_MDD_female_AllCohorts_QCed_rsID.txt
+
+
+awk 'NR==1 {
+	print "SNP","CHR","BP","A1","A2","P","Beta","SE","N"
+}
+NR>1 {
+	print $20,$18,$19,$2,$3,$10,$8,$9,$16
+}' ${sumstats} > Metaanalysis_MDD_female_AllCohorts_QCed_rsID_formatted_SNP2GENE.txt
+
+module load gzip/1.13
+gzip -k Metaanalysis_MDD_female_AllCohorts_QCed_rsID_formatted_SNP2GENE.txt
+

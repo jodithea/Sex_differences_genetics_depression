@@ -1,0 +1,16 @@
+Results
+
+Females: 0.0969 (0.0046)
+
+Males: 0.0776 (0.0046)
+
+
+From Blokland et al., 2021:
+Z-score = h2(female) - h2(male) / sqrt(SE^2(female) + SE^2(male))
+        = (0.0969 - 0.0776) / sqrt((0.0046)^2 + (0.0046)^2)
+        = 2.966774
+
+P-value from a standard normal distribution
+In R:
+p <- 2 * pnorm(2.966774, mean = 0, sd = 1, lower.tail = FALSE) 
+p = 0.003009421

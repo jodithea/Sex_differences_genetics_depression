@@ -1,0 +1,7 @@
+# First make a list of SNPs to input for clumping: SNP (rsID) P (p-value)
+# Using Adams sumstats for Europeans including 23andMe
+
+
+awk 'NR==1 {print "SNP","P"} NR>1 {print $1,$7}' \
+/path/Summary_statistics_published/Depression_Adams_2024/including_23andMe/Adams_Full_EUR_2025_FromIMB.txt \
+> Adams_Full_EUR_2025_FromIMB_formatted.txt

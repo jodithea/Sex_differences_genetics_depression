@@ -1,0 +1,4 @@
+UK Biobank full sample sex-stratified GWAS already ran as used in the meta-analysis (Females: 46,194 cases and 53,211 controls. Males: 22,608 cases and 56,516 controls)
+
+Downsampling done in UK Biobank - see 01_GWAS/01_UKB_phenotype/UKB_sex_depression_fastGWA_final.html
+GWAS run on downsampled UK Biobank (22,608 cases and 53,211 controls in both females and males)

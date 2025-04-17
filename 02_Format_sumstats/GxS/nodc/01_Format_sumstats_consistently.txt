@@ -1,0 +1,86 @@
+# Start by formatting all sumstats from each cohort consistently
+# Do this in an interactive session to check as go
+# CHR BP A1 A2 FREQA1 BETA_G BETA_G_by_E SE_G SE_G_by_E P_G P_G_by_E N MAF STUDY INFO
+# CHR is a number 1 - 22 and X
+# STUDY = 1 in each row - use in meta-analysis to count no. studies meta-analysed
+
+
+### AGDS ###
+
+AGDS_GxS_nodc=/path/AGDS_4_removed/gene_sex_interaction/GEI_AGDS_QSKIN_MDD_autosomes_and_X_nodc_QCed_INFO0.6_MAF0.01.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA_G", "BETA_G_by_E", "SE_G", "SE_G_by_E", "P_G", "P_G_by_E", "N", "MAF", "STUDY", "INFO"} 
+	NR>1 {print $3,$4,$5,$6,$7,$8,$9,$10,$11,$16,$17,$19,$22,"1",$20}' ${AGDS_GxS_nodc} > AGDS_build37_MDD_GxS_nodc_sumstats.txt
+# MAF is minor allele freq calculated in all genepi QIMR cohorts
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' AGDS_build37_MDD_GxS_nodc_sumstats.txt > temp_AGDS.txt && mv temp_AGDS.txt AGDS_build37_MDD_GxS_nodc_sumstats.txt
+
+
+### UK Biobank ###
+
+UKB_GxS_nodc=/path/UKBiobank_combined2/gene_sex_interaction/GEI_UKB_depression_autosomes_and_X_nodc_QCed_INFO0.6_MAF0.01.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA_G", "BETA_G_by_E", "SE_G", "SE_G_by_E", "P_G", "P_G_by_E", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $2,$3,$4,$5,$6,$7,$8,$9,$10,$15,$16,$18,$20,"1",$19}' ${UKB_GxS_nodc} > UKB_build37_MDD_GxS_nodc_sumstats.txt
+# MAF is provided by UK B - presumable minor allele freq calculated in entire UK B
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' UKB_build37_MDD_GxS_nodc_sumstats.txt > temp_UKB.txt && mv temp_UKB.txt UKB_build37_MDD_GxS_nodc_sumstats.txt
+
+
+
+
+### Bionic ###
+
+Bionic_GxS_nodc=/path/Bionic_Floris_results/Bionic_no_Blokland21/MRG_fastGWA_GRMeffbgen_mddsc_10PC_noblokland_sexint_fullchrXnodc_AF001_Rsq060.fastGWA
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA_G", "BETA_G_by_E", "SE_G", "SE_G_by_E", "P_G", "P_G_by_E", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $1,$3,$4,$5,$7,$8,$9,$10,$11,$16,$17,$6,$22,"1",$23}' ${Bionic_GxS_nodc} > Bionic_build37_MDD_GxS_nodc_sumstats.txt
+# MAF is minor allele frequency added by Floris using QCTools - MAF across all cohorts in Bionic. He says to filter on this rather than FREQA1 because multiple genotype files are merged after imputation and FREQA1 is not updated so it is not trustworthy
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' Bionic_build37_MDD_GxS_nodc_sumstats.txt > temp_Bionic.txt && mv temp_Bionic.txt Bionic_build37_MDD_GxS_nodc_sumstats.txt
+
+
+### Blokland et al., 2021 ###
+
+# Use gcOFF = genomic-correction OFF
+Blokland21_GxS_nodc_autosomes=/path/Blokland_2021_sumstats/meta_STDERR_mdd_eur_auto_GxS1_sexinteraction_06_gcOFF_pgc+ipsych.txt
+Blokland21_GxS_nodc_Xchr=/path/Blokland_2021_sumstats/meta_STDERR_mdd_eur_xchr2_GxS1_sexinteraction_06_gcOFF_pgc+ipsych.txt
+
+# Combine autosomes and X chr
+cat ${Blokland21_GxS_nodc_autosomes} > Blokland21_build37_MDD_GxS_nodc_sumstats.txt
+tail -n +2 ${Blokland21_GxS_nodc_Xchr} >> Blokland21_build37_MDD_GxS_nodc_sumstats.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA_G", "BETA_G_by_E", "SE_G", "SE_G_by_E", "P_G", "P_G_by_E", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $16,$17,$2,$3,$4,"NA",$8,"NA",$9,"NA",$10,$18,$22,"1","NA"}' Blokland21_build37_MDD_GxS_nodc_sumstats.txt > temp_Blokland21.txt && mv temp_Blokland21.txt Blokland21_build37_MDD_GxS_nodc_sumstats.txt
+# FREQA1 is Overall Frequency Allele 1 across meta-analysis of all cohorts
+# MAF is minor allele frequency - not stated in README where from, presumably across all cohorts included in meta-analysis?
+# INFO was not provided in sumstats, presumable because imputation score was different in each cohort and they filtered on this before doing the meta-analysis.
+# Beta, SE and P all refer to G by E, no data given for overall Gene effect
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' Blokland21_build37_MDD_GxS_nodc_sumstats.txt > temp_Blokland21.txt && mv temp_Blokland21.txt Blokland21_build37_MDD_GxS_nodc_sumstats.txt
+
+
+
+### All Of Us ###
+
+AllOfUs_GxS_nodc=/path/AllOfUs_Pierre_results/GEI/GE_noDC_MDD_GWAS_maf001.fastGWA
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA_G", "BETA_G_by_E", "SE_G", "SE_G_by_E", "P_G", "P_G_by_E", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $1,$3,$4,$5,$7,$8,$9,$10,$11,$16,$17,$6,"NA","1","NA"}' ${AllOfUs_GxS_nodc} > AllOfUs_build38_MDD_GxS_nodc_sumstats.txt
+# MAF is not available in sumstats
+# INFO is not available because it is whole genome sequencing data
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' AllOfUs_build38_MDD_GxS_nodc_sumstats.txt > temp_AllOfUs.txt && mv temp_AllOfUs.txt AllOfUs_build38_MDD_GxS_nodc_sumstats.txt
+
+
+
+### GLAD ###
+
+GLAD_GxS_nodc=/path/GLAD_Rujia_results/GLAD_mdd_GEI_batch_10pcs_maf001_INFO6_autosomes_ChrX_nPAR_nodc.txt
+
+awk 'NR==1 {print "CHR", "BP", "A1", "A2", "FREQA1", "BETA_G", "BETA_G_by_E", "SE_G", "SE_G_by_E", "P_G", "P_G_by_E", "N", "MAF", "STUDY", "INFO"}
+        NR>1 {print $1,$2,$3,$4,$6,$7,$8,$9,$10,$11,$12,$15,"NA","1",$14}' ${GLAD_GxS_nodc} > GLAD_build38_MDD_GxS_nodc_sumstats.txt
+# MAF is not available in sumstats
+
+awk '{ gsub("23", "X", $1) ; gsub("25", "X", $1) ; print }' GLAD_build38_MDD_GxS_nodc_sumstats.txt > temp_GLAD.txt && mv temp_GLAD.txt GLAD_build38_MDD_GxS_nodc_sumstats.txt
+

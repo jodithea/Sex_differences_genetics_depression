@@ -1,0 +1,36 @@
+# Sex Differences in the Genetics of Depression
+
+Repository for scripts used for sex-stratified GWAS and genome-wide genotype-by-sex interaction meta-analyses of Major Depressive Disorder, and downstream analyses
+
+## Cohorts
+* The Australian Genetics of Depression Study (AGDS) in Australia
+	- Female: cases=10,406, controls=7,147
+	- Male: cases=3,174, controls=6,601)
+* The BIObanks Netherlands Internet Collaboration (BIONIC) in the Netherlands
+	- Female: cases=10,664 , controls=26,878
+	- Male: cases=4,432, controls=20,013)
+* Genetic Links to Anxiety and Depression (GLAD+) study in the United Kingdom (UK)
+	- Female: cases=16,708 , controls=3,393
+	- Male: cases=4,656, controls=3,025)
+* UK Biobank from the UK
+	- Female: cases=46,194, controls=53,211
+	- Male: cases=22,608, controls=56,516
+* All Of Us from the United States of America
+	- Female: cases=26,776, controls=46,678
+	- Male: cases=11,136, controls=35,836).
+* Blokland et al., 2022 meta-analysis including Psychiatric Genomics Consortium (PGC) cohorts and iPSYCH
+	- Blokland GAM, et al., Sex-Dependent Shared and Nonshared Genetic Architecture Across Mood and Psychotic Disorders. Biol Psychiatry, 2022. 91(1):102-117.
+	- Female: cases=19,723,	controls=22,214
+	- Male: cases=18,799, controls=10,194
+
+**TOTAL sample size** = 130,471 cases and 159,521 controls in females, and 64,805 cases and 132,185 controls in males
+
+## Analysts
+* The analysis protocol was created by Jodi Thomas and the sex-stratified GWAS and genome-wide genotype-by-sex interaction analyses were carried out in each of the cohorts as follows
+	* AGDS = Jodi Thomas
+	* All Of Us = Jackson Thorp and Pierre Youssef
+	* BIONIC = Floris Huider
+	* GLAD+ = Rujia Wang
+	* Generation Scotland = Popppy Grimes
+	* UK Biobank = Jodi Thomas
+* Jodi Thomas performed the meta-analyses and most of the downstream statistical and bioinformatics analyses, with MiXeR analyses being carried out by Jackson Thorp. 

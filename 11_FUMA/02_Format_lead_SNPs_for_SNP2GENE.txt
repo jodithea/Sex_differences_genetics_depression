@@ -1,0 +1,31 @@
+# Format identified lead SNPs by using PLINK clumping so can input to SNP2GENE
+# Input file should have 3 columns:
+#	rsID : rsID of the lead SNPs
+#	chr : chromosome
+#	pos : genomic position (hg19)
+
+# Print non-empty rows with cols needed
+awk '$3 && $1 && $4 {print $3, $1, $4}' /path/05_Clumping/Females/clumped_female_all_results_genomewide_sig.txt > clumped_female_all_results_genomewide_sig_formatted_SNP2GENE.txt
+
+
+
+# Match onto GWAS sumstats file to get rsID
+sumstats=/path/03_Metal/Females/Metaanalysis_MDD_female_AllCohorts_QCed_rsID.txt
+
+clumps=clumped_female_all_results_genomewide_sig_formatted_SNP2GENE.txt
+
+output=clumped_female_all_results_genomewide_sig_formatted_SNP2GENE_rsID.txt
+
+awk 'NR==FNR {
+        marker[$1] = $1;
+        next
+    }
+    {
+        if (FNR == 1) {
+	print "rsID", "chr", "pos";
+    }
+        else if ($1 in marker) {
+            print $20, $18, $19;
+        }
+    }' ${clumps} ${sumstats} > ${output}
+

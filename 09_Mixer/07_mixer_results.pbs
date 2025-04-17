@@ -1,0 +1,30 @@
+#!/bin/bash
+#PBS -N mixer_results
+#PBS -l select=1:ncpus=1:mem=5GB:avx2=True
+#PBS -l walltime=01:00:00
+#PBS -J 1-6
+#PBS -o /path/mixer_ukb/results_bivariate/pbs
+#PBS -e /path/mixer_ukb/results_bivariate/pbs
+
+module load mixer/20230505
+cd $PBS_O_WORKDIR
+
+VARIABLES=($(awk -v var=$PBS_ARRAY_INDEX 'NR==var' array_values.txt))
+trait1=${VARIABLES[0]}
+trait2=${VARIABLES[1]}
+
+python3 $MIXER_ROOT/precimed/mixer_figures.py combine \
+--json /path/mixer_ukb/mixer_fit2/${trait1}.${trait2}.fit.rep@.json \
+--out ${trait1}.${trait2}.fit
+
+python3 $MIXER_ROOT/precimed/mixer_figures.py combine \
+--json /path/mixer_ukb/mixer_test2/${trait1}.${trait2}.test.rep@.json \
+--out ${trait1}.${trait2}.test
+
+python3 $MIXER_ROOT/precimed/mixer_figures.py two \
+--json-fit ${trait1}.${trait2}.fit.json \
+--json-test ${trait1}.${trait2}.test.json \
+--statistic mean std \
+--out ${trait1}.${trait2}
+
+

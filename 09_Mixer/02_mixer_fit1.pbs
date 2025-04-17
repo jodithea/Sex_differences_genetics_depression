@@ -1,0 +1,24 @@
+#!/bin/bash
+#PBS -N mixer_fit1
+#PBS -l select=1:ncpus=12:mem=17G:avx2=True
+#PBS -l walltime=24:00:00
+#PBS -J 1-80
+#PBS -o /path/mixer_ukb/mixer_fit1/pbs
+#PBS -e /path/mixer_ukb/mixer_fit1/pbs
+
+module load mixer/20240923
+cd $PBS_O_WORKDIR
+
+VARIABLES=($(awk -v var=$PBS_ARRAY_INDEX 'NR==var' array_values.txt))
+trait=${VARIABLES[0]}
+rep=${VARIABLES[1]}
+
+python3 $MIXER_ROOT/precimed/mixer.py fit1 \
+--lib $MIXER_ROOT/src/build/lib/libbgmg.so \
+--bim-file /path/ref_1kG_phase3_EUR/chr@.bim \
+--ld-file /path/1000G_EUR_Phase3_LDref/1000G.EUR.QC.chr@.run4.ld \
+--extract /path/1000G_EUR_Phase3_LDref/1000G.EUR.QC.prune_maf0p05_rand2M_r2p8.rep${rep}.snps \
+--trait1-file /path/mixer_ukb/munged_sumstats/${trait}.sumstats.gz \
+--threads 12 \
+--out ${trait}.fit.rep${rep}
+
