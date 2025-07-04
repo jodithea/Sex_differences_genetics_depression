@@ -1,5 +1,6 @@
 directory = "/path/10_Publication_figures/04_rg_mixer_gwaspw/"
 
+# rg files available in source_data directory
 rg_female = "/path/04_LDSC/SNPrg/Females/rg_femaleMDD_correlation_table.txt"
 
 rg_male = "/path/04_LDSC/SNPrg/Males/rg_maleMDD_correlation_table.txt"
@@ -183,7 +184,7 @@ circle_data <- data.frame(
 
 # Plot the Euler diagram with numbers positioned correctly
 mixer_venn_F_MDD_BMI <- ggplot(circle_data) +
-  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.5, color = "black") +
+  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.6, color = "black") +
   scale_fill_manual(values = c("#FDE725FF", "#B8DE29FF")) +
   coord_fixed() +
   # Add labels inside each circle and in the overlapping section
@@ -191,17 +192,17 @@ mixer_venn_F_MDD_BMI <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "black", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "black", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = mean(circle_data$x),
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "black", family = "Calibri", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
@@ -254,7 +255,7 @@ circle_data <- data.frame(
 
 # Plot the Euler diagram with numbers positioned correctly
 mixer_venn_F_MDD_metS <- ggplot(circle_data) +
-  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.5, color = "black") +
+  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.6, color = "black") +
   scale_fill_manual(values = c("#FDE725FF", "#B8DE29FF")) +
   coord_fixed() +
   # Add labels inside each circle and in the overlapping section
@@ -262,17 +263,17 @@ mixer_venn_F_MDD_metS <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "black", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "black", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = mean(circle_data$x),
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "black", family = "Calibri", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
@@ -324,7 +325,7 @@ circle_data <- data.frame(
 
 # Plot the Euler diagram with numbers positioned correctly
 mixer_venn_M_MDD_BMI <- ggplot(circle_data) +
-  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.5, color = "black") +
+  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.6, color = "black") +
   scale_fill_manual(values = c("#440154FF", "#453781FF")) +
   coord_fixed() +
   # Add labels inside each circle and in the overlapping section
@@ -332,17 +333,17 @@ mixer_venn_M_MDD_BMI <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = mean(circle_data$x),
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
@@ -395,7 +396,7 @@ circle_data <- data.frame(
 
 # Plot the Euler diagram with numbers positioned correctly
 mixer_venn_M_MDD_metS <- ggplot(circle_data) +
-  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.5, color = "black") +
+  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.6, color = "black") +
   scale_fill_manual(values = c("#440154FF", "#453781FF")) +
   coord_fixed() +
   # Add labels inside each circle and in the overlapping section
@@ -403,17 +404,17 @@ mixer_venn_M_MDD_metS <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = mean(circle_data$x),
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
@@ -463,11 +464,13 @@ circle_data <- data.frame(
 
 # Plot the Euler diagram
 gwaspw_MDD_BMI_venn <- ggplot(circle_data) +
-  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.5) +
+  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.6) +
   scale_fill_manual(values = c("#FDE725FF", "#440154FF")) +
   coord_fixed(expand = TRUE) +
-  annotate("text", x = circle_data$x[1], y = circle_data$y[1], label = female, size = 3, color = "black", family = "Calibri") +
-  annotate("text", x = circle_data$x[2], y = circle_data$y[2], label = overlap, size = 3, color = "black", family = "Calibri") +
+  annotate("text", x = circle_data$x[1], y = circle_data$y[1], 
+           label = female, size = 3, color = "black", family = "Calibri", fontface = "bold") +
+  annotate("text", x = circle_data$x[2], y = circle_data$y[2], 
+           label = overlap, size = 3, color = "white", family = "Calibri", fontface = "bold") +
   # Add label above the circles
   # annotate("text",
   #          x = circle_data$x[1],
@@ -486,60 +489,53 @@ gwaspw_MDD_BMI_venn <- ggplot(circle_data) +
 
 gwaspw_MDD_BMI_venn
 
-
 ### Venn: gwas-pw female vs male for shared MDD/metS regions ###
 # Data: sizes of each group
-one <- 22  # female exclusive
-two <- 4   # male exclusive
+female <- 22  # female exclusive
+male <- 4   # male exclusive
 overlap <- 4  # Shared between female and male
 
 # Calculate circle areas
-area_one <- one + overlap
-area_two <- two + overlap
+sizes <- c(Female = female + overlap,
+           Male = male + overlap)
 
 # Convert areas to radii (since area = π * r^2, radius = sqrt(area / π))
-r_1 <- sqrt(area_one / pi)
-r_2 <- sqrt(area_two / pi)
+r_female <- sqrt(sizes["Female"] / pi)
+r_male <- sqrt(sizes["Male"] / pi)
 
 # Calculate the proportional overlap distance
-overlap_ratio <- overlap / min(area_one, area_two)
-d <- (r_1 + r_2) * (1 - overlap_ratio / 2)  # Adjust overlap distance
+overlap_ratio <- overlap / min(sizes["Female"], sizes["Male"])
+d <- (r_female + r_male) * (1 - overlap_ratio / 2)  # Adjust overlap distance
 
 # Create circle data with calculated positions
 circle_data <- data.frame(
   x = c(0, d),  # x-coordinates for each circle
   y = c(0, 0),  # Keep y-coordinates the same for both circles
-  radius = c(r_1, r_2),
-  group = c("MDD", "BMI")
+  radius = c(r_female, r_male),
+  group = c("Female", "Male")
 )
 
 # Plot the Euler diagram with numbers positioned correctly
 gwaspw_MDD_metS_venn <- ggplot(circle_data) +
-  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.5, color = "black") +
-  scale_fill_manual(values = c("#440154FF", "#FDE725FF")) +
+  geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.6, color = "black") +
+  scale_fill_manual(values = c("#FDE725FF", "#440154FF")) +
   coord_fixed(expand = TRUE) +
   # Add labels inside each circle and in the overlapping section
   annotate("text",
-           x = circle_data$x[1] - r_1 / 2,
+           x = circle_data$x[1] - r_female / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "black", family = "Calibri", fontface = "bold") +
   annotate("text",
-           x = circle_data$x[2] + r_2 / 2,
+           x = circle_data$x[2] + r_male / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "black", family = "Calibri") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   annotate("text",
            x = mean(circle_data$x) + 0.6,
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "black", family = "Calibri") +
-  # Add label above the circles
-  # annotate("text",
-  #          x = mean(circle_data$x),
-  #          y = circle_data$y[1] + circle_data$radius[1] + 0.7,
-  #          label = "Shared regions \nMDD/metS",
-  #          size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 3, color = "white", family = "Calibri", fontface = "bold") +
   ggtitle("Shared regions \nMDD/metS") +
   theme_classic() +
   theme(text = element_text(family = "Calibri"),
@@ -552,6 +548,9 @@ gwaspw_MDD_metS_venn <- ggplot(circle_data) +
 
 
 gwaspw_MDD_metS_venn
+
+
+
 
 ### PANELLED FIGURE ###
 

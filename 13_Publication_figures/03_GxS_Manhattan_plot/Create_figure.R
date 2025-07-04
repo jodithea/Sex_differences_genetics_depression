@@ -1,7 +1,9 @@
 directory = "/path/10_Publication_figures/03_GxS_Manhattan_plot/"
 
+# GxS = summary statistics file available from download from GWASCatalog
 GxS="/path/03_Metal/GxS/fulldc/Metaanalysis_MDD_GxS_fulldc_AllCohorts_QCed_rsID.txt"
 
+# clump file available in source_data directory
 clumpfile_inter = "/path/05_Clumping/GxS/fulldc/clumped_GxS_fulldc_all_results.txt"
 
 

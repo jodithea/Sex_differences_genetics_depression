@@ -362,6 +362,7 @@ cor_male_v_female_df <- all_plots_cor_male_v_female$correlations %>%
   as_tibble() %>%
   mutate(cohort_label = paste(female_cohort, "vs", male_cohort))
 
+save(cor_male_v_female_df, file = paste(directory, "Correlation_data_male_vs_female.RData", sep = ""))
 
 ## Across cohorts (all comparisons apart from diagonal = 30)
 
@@ -441,7 +442,7 @@ dev.off()
 outfile <- paste0(directory, "/meta_male_vs_female_within_cohort_summary.txt")
 sink(outfile)
 
-# Write the summary of 
+# Write the summary of
 cat("\n\nSummary of meta-analysis of R (from correlation of male beta vs female beta within the same cohort):\n")
 print(summary(meta_r_MF_within))
 
@@ -659,6 +660,8 @@ correlation_male_v_male_df <- all_plots_correlations_male_v_male$correlation %>%
   as_tibble() %>%
   mutate(cohort_label = paste(male_cohort1, "vs", male_cohort2))
 
+save(correlation_male_v_male_df, file = paste(directory, "Correlation_data_male_vs_male.RData", sep = ""))
+
 # Top half of 6x6 plot grid is when the x axis cohort (male_cohort1) comes alphabetically before y axis cohort (male_cohort2)
 correlation_male_v_male_across_df <- correlation_male_v_male_df %>%
   filter(as.character(male_cohort1) < as.character(male_cohort2))
@@ -684,7 +687,7 @@ outfile <- paste0(directory, "/meta_male_vs_male_across_cohort_summary.txt")
 sink(outfile)
 
 
-# Write the summary 
+# Write the summary
 cat("\n\nSummary of meta-analysis of R (from correlation of male beta vs male beta across cohorts):\n")
 print(summary(meta_r_MM_across))
 
@@ -894,6 +897,7 @@ ggsave(plot_grid, file = outfile, width = 80, height = 80, unit = "cm")
 ## ----
 
 
+
 ## ---- MetaAnalysisFemaleVsFemale
 # Meta-analyse (inverse variance weighted) the correlations for the F-F in each of the 6 cohorts
 # Uses random effects (heterogeneity between cohorts)
@@ -903,12 +907,14 @@ correlation_female_v_female_df <- all_plots_correlations_female_v_female$correla
   as_tibble() %>%
   mutate(cohort_label = paste(female_cohort1, "vs", female_cohort2))
 
+save(correlation_female_v_female_df, file = paste(directory, "Correlation_data_female_vs_female.RData", sep = ""))
+
 # Top half of 6x6 plot grid is when the x axis cohort (female_cohort1) comes alphabetically before y axis cohort (female_cohort2)
 correlation_female_v_female_across_df <- correlation_female_v_female_df %>%
   filter(as.character(female_cohort1) < as.character(female_cohort2))
 
 
-# Meta-analysis of female beta vs female beta 
+# Meta-analysis of female beta vs female beta
 meta_r_FF_across <- rma(yi = pearson_r,
                         sei = pearson_r_se,
                         weighted = T,
@@ -928,7 +934,7 @@ outfile <- paste0(directory, "/meta_female_vs_female_across_cohort_summary.txt")
 sink(outfile)
 
 
-# Write the summary 
+# Write the summary
 cat("\n\nSummary of meta-analysis of R (from correlation of female beta vs female beta across cohorts):\n")
 print(summary(meta_r_FF_across))
 

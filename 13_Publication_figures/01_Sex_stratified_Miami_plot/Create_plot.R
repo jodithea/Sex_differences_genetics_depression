@@ -1,9 +1,11 @@
 directory = "/path/10_Publication_figures/01_Sex_stratified_Miami_plot/"
 
+# femaleGWAS and maleGWAS are the sex-stratified summary statistics files available to download from GWASCatalog
 femaleGWAS = "/path/Meta-analysis/Freeze2/03_Metal/Females/Metaanalysis_MDD_female_AllCohorts_QCed_rsID.txt"
 
 maleGWAS = "/path/Meta-analysis/Freeze2/03_Metal/Males/Metaanalysis_MDD_male_AllCohorts_QCed_rsID.txt"
 
+# clump files in source_data directory
 clumpfile_female = "/path/Meta-analysis/Freeze2/05_Clumping/Females/clumped_female_all_results.txt"
 
 clumpfile_male = "/path/Meta-analysis/Freeze2/05_Clumping/Males/clumped_male_all_results.txt"
