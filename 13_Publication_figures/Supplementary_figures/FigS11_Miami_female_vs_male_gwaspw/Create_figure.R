@@ -133,6 +133,7 @@ facet_labels <- c(
   male = "Males"
 )
 
+
 Miami_plot <- ggplot(Man_plot_df,
                      aes(x = bp_cum,
                          y = ifelse(Dataset == "female",
@@ -176,7 +177,7 @@ if (nrow(model4_df) > 0) {
 }
 
 Miami_plot <- Miami_plot +
-  geom_point(size = 0.9, alpha = 0.75) +
+  geom_point(size = 0.9, alpha = 0.75, show.legend = FALSE) +
   geom_hline(data = Man_plot_df,
              aes(yintercept = ifelse(Dataset == "female",
                                      -log10(sig), log10(sig))),
@@ -192,22 +193,38 @@ Miami_plot <- Miami_plot +
   scale_y_continuous(breaks = seq(-chosen_ylim, chosen_ylim, 1),
                      labels = abs(seq(-chosen_ylim, chosen_ylim, 1))) +
   scale_color_manual(values = rep(c("#20A387FF", "#95D840FF"),
-                                  unique(length(axis_set$CHR)))) +
+                                  unique(length(axis_set$CHR))),
+                     guide = "none") +
   labs(x = "Chromosome",
        y = expression(-log[10](p-value)),
        color = "Dataset") +
   facet_wrap(~ Dataset, scale = "free_y", ncol = 1, strip.position = "right",
              labeller = as_labeller(facet_labels)) +
+  geom_rect(data = data.frame(start = NA, stop = NA),
+            aes(xmin = 0, xmax = 0, fill = "Both sexes"),
+            ymin = -Inf, ymax = Inf,
+            colour = NA,
+            inherit.aes = FALSE,
+            show.legend = TRUE) +
+  geom_rect(data = data.frame(start = NA, stop = NA),
+            aes(xmin = 0, xmax = 0, fill = "Female-specific"),
+            ymin = -Inf, ymax = Inf,
+            colour = NA,
+            inherit.aes = FALSE,
+            show.legend = TRUE) +
+  scale_fill_manual("gwas-pw",
+                    values = c("Both sexes" = "grey", "Female-specific" = "#FDE725FF")) +
   theme_classic() +
-  theme(legend.position = "none",
-      text = element_text(family = "Calibri"),
-      axis.text.x = element_text(angle = 60, size = 8, vjust = 0.5),
-      axis.text.y = element_text(size = 10),
-      axis.title.x = element_text(size = 12, colour = "#191d1f", margin = margin(10,0,0,0)),
-      axis.title.y = element_text(size = 12, colour = "#191d1f", margin = margin(0,10,0,0)),
-      strip.text = element_text(size = 12, colour = "#191d1f"),
-      axis.line = element_line(colour = "#191d1f"),
-      axis.ticks = element_line(colour = "#191d1f"))
+  theme(legend.position = "top",
+        text = element_text(family = "Calibri"),
+        axis.text.x = element_text(angle = 60, size = 8, vjust = 0.5),
+        axis.text.y = element_text(size = 10),
+        axis.title.x = element_text(size = 12, colour = "#191d1f", margin = margin(10,0,0,0)),
+        axis.title.y = element_text(size = 12, colour = "#191d1f", margin = margin(0,10,0,0)),
+        strip.text = element_text(size = 12, colour = "#191d1f"),
+        axis.line = element_line(colour = "#191d1f"),
+        axis.ticks = element_line(colour = "#191d1f"))
+
 
 
 # To set y axis scales for the two facets with the same chosen_ylim so have same y axis making it easier to compare
@@ -221,6 +238,7 @@ position_scales <- list(
 
 Miami_plot <- Miami_plot + facetted_pos_scales(y = position_scales)
 
+# Miami_plot
+
 outfile <- paste(directory, "Miami_female_male_gwaspw.png", sep="")
 ggsave(Miami_plot, width = 20, height = 10, unit = "cm", file = outfile)
-

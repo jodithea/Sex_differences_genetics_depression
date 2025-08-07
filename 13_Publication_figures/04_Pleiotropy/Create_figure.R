@@ -1,6 +1,5 @@
 directory = "/path/10_Publication_figures/04_rg_mixer_gwaspw/"
 
-# rg files available in source_data directory
 rg_female = "/path/04_LDSC/SNPrg/Females/rg_femaleMDD_correlation_table.txt"
 
 rg_male = "/path/04_LDSC/SNPrg/Males/rg_maleMDD_correlation_table.txt"
@@ -10,6 +9,8 @@ rg_male = "/path/04_LDSC/SNPrg/Males/rg_maleMDD_correlation_table.txt"
 
 library(patchwork)
 library(ggforce)      # ggplot circles
+library(showtext)
+showtext_auto()
 library(tidyverse)
 
 
@@ -93,19 +94,19 @@ rg_plot_traits <- ggplot(plot_df_traits, aes(x = rg, y = p2, colour = p1)) +
                      breaks = c(-0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1),
                      labels = c(-0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1),
                      limits = c(-0.41, 1.01)) +
-  annotate("text", x = 0.7, y = "ADHD", label = "*", size = 5) +
-  annotate("text", x = 0.3, y = "BMI", label = "*", size = 5) +
-  annotate("text", x = 0.35, y = "Metabolic_syndrome", label = "*", size = 5) +
-  annotate("text", x = 0.45, y = "Ever_smoked_regularly", label = "*", size = 5) +
+  annotate("text", x = 0.7, y = "ADHD", label = "*", size = 7 / 2.845276) +
+  annotate("text", x = 0.3, y = "BMI", label = "*", size = 7 / 2.845276) +
+  annotate("text", x = 0.35, y = "Metabolic_syndrome", label = "*", size = 7 / 2.845276) +
+  annotate("text", x = 0.45, y = "Ever_smoked_regularly", label = "*", size = 7 / 2.845276) +
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
-        axis.text.x = element_text(size = 10),
-        axis.text.y = element_text(size = 10),
-        axis.title.x = element_text(size = 12, colour = "black", margin = margin(10,0,0,0)),
-        axis.title.y = element_text(size = 12, colour = "black", margin = margin(0,10,0,0)),
+  theme(text = element_text(family = "Arial"),
+        axis.text.x = element_text(size = 7),
+        axis.text.y = element_text(size = 7),
+        axis.title.x = element_text(size = 7, colour = "black", margin = margin(10,0,0,0)),
+        axis.title.y = element_text(size = 7, colour = "black", margin = margin(0,10,0,0)),
         legend.position = "top",
-        legend.title = element_text(size = 12, colour = "black"),
-        legend.text = element_text(size = 10, colour = "black"))
+        legend.title = element_text(size = 7, colour = "black"),
+        legend.text = element_text(size = 7, colour = "black"))
 
 rg_plot_traits
 
@@ -142,14 +143,14 @@ rg_plot_BMI <- ggplot(plot_df_bmi, aes(x = rg, y = p2, colour = p1)) +
                      breaks = c(0, 0.1, 0.2, 0.3),
                      labels = c(0, 0.1, 0.2, 0.3),
                      limits = c(0, 0.35)) +
-  annotate("text", x = 0.32, y = "BMI_female", label = "*", size = 5) +
-  annotate("text", x = 0.32, y = "BMI_male", label = "*", size = 5) +
+  annotate("text", x = 0.32, y = "BMI_female", label = "*", size = 7 / 2.845276) +
+  annotate("text", x = 0.32, y = "BMI_male", label = "*", size = 7 / 2.845276) +
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
-        axis.text.x = element_text(size = 10),
-        axis.text.y = element_text(size = 10),
-        axis.title.x = element_text(size = 12, colour = "black", margin = margin(10,0,0,0)),
-        axis.title.y = element_text(size = 12, colour = "black", margin = margin(0,10,0,0)),
+  theme(text = element_text(family = "Arial"),
+        axis.text.x = element_text(size = 7),
+        axis.text.y = element_text(size = 7),
+        axis.title.x = element_text(size = 7, colour = "black", margin = margin(10,0,0,0)),
+        axis.title.y = element_text(size = 7, colour = "black", margin = margin(0,10,0,0)),
         legend.position = "none")
 
 rg_plot_BMI
@@ -192,31 +193,31 @@ mixer_venn_F_MDD_BMI <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
-           x = mean(circle_data$x),
+           x = mean(circle_data$x) + 3,
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
            y = circle_data$y[1] + r_1 + 10,
            label = "MDD",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2],
            y = circle_data$y[2] + r_2 + 10,
            label = "BMI",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
+  theme(text = element_text(family = "Arial"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
@@ -263,31 +264,31 @@ mixer_venn_F_MDD_metS <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
-           x = mean(circle_data$x),
+           x = mean(circle_data$x) + 3,
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
            y = circle_data$y[1] + r_1 + 10,
            label = "MDD",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2],
            y = circle_data$y[2] + r_2 + 10,
            label = "metS",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
+  theme(text = element_text(family = "Arial"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
@@ -333,31 +334,31 @@ mixer_venn_M_MDD_BMI <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   annotate("text",
            x = mean(circle_data$x),
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
            y = circle_data$y[1] + r_1 + 10,
            label = "MDD",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2],
            y = circle_data$y[2] + r_2 + 10,
            label = "BMI",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
+  theme(text = element_text(family = "Arial"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
@@ -404,31 +405,31 @@ mixer_venn_M_MDD_metS <- ggplot(circle_data) +
            x = circle_data$x[1] - r_1 / 2,
            y = circle_data$y[1],
            label = one,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_2 / 2,
            y = circle_data$y[2],
            label = two,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   annotate("text",
-           x = mean(circle_data$x),
+           x = mean(circle_data$x) - 5,
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   # Add labels above the circles
   annotate("text",
            x = circle_data$x[1],
            y = circle_data$y[1] + r_1 + 10,
            label = "MDD",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2],
            y = circle_data$y[2] + r_2 + 10,
            label = "metS",
-           size = 4, color = "black", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
+  theme(text = element_text(family = "Arial"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
@@ -467,20 +468,20 @@ gwaspw_MDD_BMI_venn <- ggplot(circle_data) +
   geom_circle(aes(x0 = x, y0 = y, r = radius, fill = group), alpha = 0.6) +
   scale_fill_manual(values = c("#FDE725FF", "#440154FF")) +
   coord_fixed(expand = TRUE) +
-  annotate("text", x = circle_data$x[1], y = circle_data$y[1], 
-           label = female, size = 3, color = "black", family = "Calibri", fontface = "bold") +
-  annotate("text", x = circle_data$x[2], y = circle_data$y[2], 
-           label = overlap, size = 3, color = "white", family = "Calibri", fontface = "bold") +
+  annotate("text", x = circle_data$x[1], y = circle_data$y[1],
+           label = female, size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
+  annotate("text", x = circle_data$x[2], y = circle_data$y[2],
+           label = overlap, size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   # Add label above the circles
   # annotate("text",
   #          x = circle_data$x[1],
   #          y = circle_data$y[1] + circle_data$radius[1] + 0.7,
   #          label = "Shared regions \nMDD/BMI",
-  #          size = 4, color = "black", family = "Calibri", fontface = "bold") +
+  #          size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   ggtitle("Shared regions \nMDD/BMI") +
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
-        plot.title = element_text(size = 12, hjust = 0.5, face = "bold"),
+  theme(text = element_text(family = "Arial"),
+        plot.title = element_text(size = 7, hjust = 0.5, face = "bold"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
@@ -524,22 +525,22 @@ gwaspw_MDD_metS_venn <- ggplot(circle_data) +
   annotate("text",
            x = circle_data$x[1] - r_female / 2,
            y = circle_data$y[1],
-           label = one,
-           size = 3, color = "black", family = "Calibri", fontface = "bold") +
+           label = female,
+           size = 7 / 2.845276, color = "black", family = "Arial", fontface = "bold") +
   annotate("text",
            x = circle_data$x[2] + r_male / 2,
            y = circle_data$y[2],
-           label = two,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           label = male,
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   annotate("text",
            x = mean(circle_data$x) + 0.6,
            y = circle_data$y[1],
            label = overlap,
-           size = 3, color = "white", family = "Calibri", fontface = "bold") +
+           size = 7 / 2.845276, color = "white", family = "Arial", fontface = "bold") +
   ggtitle("Shared regions \nMDD/metS") +
   theme_classic() +
-  theme(text = element_text(family = "Calibri"),
-        plot.title = element_text(size = 12, hjust = 0.5, face = "bold"),
+  theme(text = element_text(family = "Arial"),
+        plot.title = element_text(size = 7, hjust = 0.5, face = "bold"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
@@ -563,12 +564,10 @@ figure <- ((rg_plot_traits |
      (gwaspw_MDD_BMI_venn + theme(plot.margin = unit(c(5,5,15,15), "pt")) |
         gwaspw_MDD_metS_venn + theme(plot.margin = unit(c(5,5,15,15), "pt")))) +
   plot_annotation(tag_levels = list(c("A", "B", "C", "", "", "", "D"))) &
-  theme(plot.tag = element_text(size = 12, face = "bold", family = "Calibri"),
+  theme(plot.tag = element_text(size = 7, face = "bold", family = "Arial"),
         plot.margin = unit(c(10, 10, 10, 10), "pt") )
 
 figure
 
-
-
-outfile <- paste(directory, "Rg_traits_BMI_sex_specific_mixer_gwaspw.png", sep="")
-ggsave(figure, width = 29, height = 21, unit = "cm", file = outfile)
+outfile <- paste(directory, "Rg_traits_BMI_sex_specific_mixer_gwaspw.eps", sep="")
+ggsave(figure, width = 18, height = 18.5, units = "cm", file = outfile, device = cairo_ps, dpi = 300)

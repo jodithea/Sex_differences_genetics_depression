@@ -111,9 +111,9 @@ model4_df <- model4_add %>%
 # Plot (only include gwas-pw results in plot if there is data in each data frame)
 
 plot <- ggplot(Man_plot_df,
-                     aes(x = bp_cum,
-                         y = -log10(P),
-                         color = as_factor(CHR)))
+               aes(x = bp_cum,
+                   y = -log10(P),
+                   color = as_factor(CHR)))
 
 if (nrow(model1_df) > 0) {
   plot <- plot +
@@ -152,7 +152,7 @@ if (nrow(model4_df) > 0) {
 }
 
 plot <- plot +
-  geom_point(size = 0.9, alpha = 0.75) +
+  geom_point(size = 0.9, alpha = 0.75, show.legend = FALSE) +
   geom_hline(data = Man_plot_df,
              aes(yintercept = -log10(sig)),
              color = "grey30",
@@ -166,12 +166,27 @@ plot <- plot +
   scale_y_continuous(breaks = seq(-ylim, ylim, 1),
                      labels = abs(seq(-ylim, ylim, 1))) +
   scale_color_manual(values = rep(c("#20A387FF", "#95D840FF"),
-                                  unique(length(axis_set$CHR)))) +
+                                  unique(length(axis_set$CHR))),
+                     guide = "none") +
   labs(x = "Chromosome",
        y = expression(-log[10](p-value)),
        color = "Dataset") +
+  geom_rect(data = data.frame(start = NA, stop = NA),
+            aes(xmin = 0, xmax = 0, fill = "Both sexes"),
+            ymin = -Inf, ymax = Inf,
+            colour = NA,
+            inherit.aes = FALSE,
+            show.legend = TRUE) +
+  geom_rect(data = data.frame(start = NA, stop = NA),
+            aes(xmin = 0, xmax = 0, fill = "Female-specific"),
+            ymin = -Inf, ymax = Inf,
+            colour = NA,
+            inherit.aes = FALSE,
+            show.legend = TRUE) +
+  scale_fill_manual("gwas-pw",
+                    values = c("Both sexes" = "grey", "Female-specific" = "#FDE725FF")) +
   theme_classic() +
-  theme(legend.position = "none",
+  theme(legend.position = "top",
         text = element_text(family = "Calibri"),
         axis.text.x = element_text(angle = 60, size = 8, vjust = 0.5),
         axis.text.y = element_text(size = 10),

@@ -368,6 +368,8 @@ regression_male_v_female_df <- all_plots_regressions_male_v_female$regressions %
   as_tibble() %>%
   mutate(cohort_label = paste(female_cohort, "vs", male_cohort))
 
+outfile = paste0(directory, "/male_vs_female_linear_regression_results_all_cohort_combos.RData")
+save(regression_male_v_female_df, file = outfile)
 
 ## Across cohorts (all comparisons apart from diagonal) = 30 comparisons
 

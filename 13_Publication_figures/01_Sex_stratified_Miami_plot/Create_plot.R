@@ -1,14 +1,13 @@
 directory = "/path/10_Publication_figures/01_Sex_stratified_Miami_plot/"
 
 # femaleGWAS and maleGWAS are the sex-stratified summary statistics files available to download from GWASCatalog
-femaleGWAS = "/path/Meta-analysis/Freeze2/03_Metal/Females/Metaanalysis_MDD_female_AllCohorts_QCed_rsID.txt"
+femaleGWAS = "/path/03_Metal/Females/Metaanalysis_MDD_female_AllCohorts_QCed_rsID.txt"
 
-maleGWAS = "/path/Meta-analysis/Freeze2/03_Metal/Males/Metaanalysis_MDD_male_AllCohorts_QCed_rsID.txt"
+maleGWAS = "/path/03_Metal/Males/Metaanalysis_MDD_male_AllCohorts_QCed_rsID.txt"
 
-# clump files in source_data directory
-clumpfile_female = "/path/Meta-analysis/Freeze2/05_Clumping/Females/clumped_female_all_results.txt"
+clumpfile_female = "/path/05_Clumping/Females/clumped_female_all_results.txt"
 
-clumpfile_male = "/path/Meta-analysis/Freeze2/05_Clumping/Males/clumped_male_all_results.txt"
+clumpfile_male = "/path/05_Clumping/Males/clumped_male_all_results.txt"
 
 
 #########################################################################
@@ -17,6 +16,8 @@ clumpfile_male = "/path/Meta-analysis/Freeze2/05_Clumping/Males/clumped_male_all
 library(data.table)   # To load data
 library(qqman)        # To create QQ Plot
 library(ggh4x)        # To create different scales on ggplot facets
+library(showtext)
+showtext_auto()
 library(tidyverse)
 
 ### Load Data ###
@@ -157,18 +158,18 @@ Miami_plot <- ggplot(Man_plot_df,
   scale_color_manual(values = rep(c("#20A387FF", "#95D840FF"),
                                   unique(length(axis_set$CHR)))) +
   labs(x = "Chromosome",
-       y = expression(-log[10](p-value)),
+       y = expression(-log[10](paste("p-value"))),
        color = "Dataset") +
   facet_wrap(~ Dataset, scale = "free_y", ncol = 1, strip.position = "right",
              labeller = as_labeller(facet_labels)) +
   theme_classic() +
   theme(legend.position = "none",
         text = element_text(family = "Calibri"),
-        axis.text.x = element_text(angle = 60, size = 8, vjust = 0.5),
-        axis.text.y = element_text(size = 10),
-        axis.title.x = element_text(size = 12, colour = "#191d1f", margin = margin(10,0,0,0)),
-        axis.title.y = element_text(size = 12, colour = "#191d1f", margin = margin(0,10,0,0)),
-        strip.text = element_text(size = 12, colour = "#191d1f"),
+        axis.text.x = element_text(angle = 60, size = 7, vjust = 0.5),
+        axis.text.y = element_text(size = 7),
+        axis.title.x = element_text(size = 7, colour = "#191d1f", margin = margin(10,0,0,0)),
+        axis.title.y = element_text(size = 7, colour = "#191d1f", margin = margin(0,10,0,0)),
+        strip.text = element_text(size = 7, colour = "#191d1f"),
         axis.line = element_line(colour = "#191d1f"),
         axis.ticks = element_line(colour = "#191d1f"))
 
@@ -185,7 +186,9 @@ Miami_plot <- Miami_plot + facetted_pos_scales(y = position_scales)
 
 # Miami_plot
 
-outfile <- paste(directory, "Miami_plot_sex_stratified.png", sep="")
-ggsave(Miami_plot, width = 19, height = 10, unit = "cm", file = outfile)
+# outfile <- paste(directory, "Miami_plot_sex_stratified.png", sep="")
+# ggsave(Miami_plot, width = 18, height = 9, unit = "cm", file = outfile)
 
+outfile <- paste(directory, "Miami_plot_sex_stratified.eps", sep="")
+ggsave(Miami_plot, width = 18, height = 9, units = "cm", file = outfile, device = cairo_ps, dpi = 300)
 
