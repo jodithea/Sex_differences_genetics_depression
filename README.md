@@ -1,8 +1,10 @@
 # Sex Differences in the Genetics of Depression
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15233098.svg)](https://doi.org/10.5281/zenodo.15233098)
-
 Repository for scripts used for sex-stratified GWAS and genome-wide genotype-by-sex interaction meta-analyses of Major Depressive Disorder, and downstream analyses
+
+This repository has been archived on Zenodo and assigned a DOI: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15233098.svg)](https://doi.org/10.5281/zenodo.15233098)
+
+The associated publication for this repository: (accepted at Nature Communications, DOI badge will be added when published)
 
 ## Cohorts
 * The Australian Genetics of Depression Study (AGDS) in Australia
