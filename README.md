@@ -2,9 +2,15 @@
 
 Repository for scripts used for sex-stratified GWAS and genome-wide genotype-by-sex interaction meta-analyses of Major Depressive Disorder, and downstream analyses
 
-This repository has been archived on Zenodo and assigned a DOI: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15233098.svg)](https://doi.org/10.5281/zenodo.15233098)
+This repository has been archived on Zenodo and assigned a DOI: 
 
-The associated publication for this repository: [![DOI](https://img.shields.io/badge/DOI-blue)](https://doi.org/10.1038/s41467-025-63236-1)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15233098.svg)](https://doi.org/10.5281/zenodo.15233098)
+
+The associated publication for this repository: 
+
+[![DOI](https://img.shields.io/badge/DOI-10.1038/s41467--025--63236--1-blue)](https://doi.org/10.1038/s41467-025-63236-1)
+
+Thomas, J.T., Thorp, J.G., Huider, F. et al. Sex-stratified genome-wide association meta-analysis of major depressive disorder. Nature Communications 16, 7960 (2025).
 
 The summary statistics are available on GWAS Catalog:
 
