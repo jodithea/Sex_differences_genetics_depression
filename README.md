@@ -4,7 +4,13 @@ Repository for scripts used for sex-stratified GWAS and genome-wide genotype-by-
 
 This repository has been archived on Zenodo and assigned a DOI: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15233098.svg)](https://doi.org/10.5281/zenodo.15233098)
 
-The associated publication for this repository: (accepted at Nature Communications, DOI badge will be added when published)
+The associated publication for this repository: [![DOI](https://doi.org/10.1038/s41467-025-63236-1.svg)](https://doi.org/10.1038/s41467-025-63236-1)
+
+The summary statistics are available on GWAS Catalog:
+[![GWAS Catalog GCST90565869](https://img.shields.io/badge/GWAS-GCST90565869-blue)](https://www.ebi.ac.uk/gwas/studies/GCST90565869)  
+[![GWAS Catalog GCST90565870](https://img.shields.io/badge/GWAS-GCST90565870-blue)](https://www.ebi.ac.uk/gwas/studies/GCST90565870)  
+[![GWAS Catalog GCST90565871](https://img.shields.io/badge/GWAS-GCST90565871-blue)](https://www.ebi.ac.uk/gwas/studies/GCST90565871)  
+[![GWAS Catalog GCST90565872](https://img.shields.io/badge/GWAS-GCST90565872-blue)](https://www.ebi.ac.uk/gwas/studies/GCST90565872) 
 
 ## Cohorts
 * The Australian Genetics of Depression Study (AGDS) in Australia
