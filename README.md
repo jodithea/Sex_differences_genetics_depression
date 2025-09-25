@@ -14,10 +14,10 @@ Thomas, J.T., Thorp, J.G., Huider, F. et al. Sex-stratified genome-wide associat
 
 The summary statistics are available on GWAS Catalog:
 
-[![GWASCatalog GCST90565869](https://img.shields.io/badge/GWASCatalog-GCST90565869-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565869)  
-[![GWASCatalog GCST90565870](https://img.shields.io/badge/GWASCatalog-GCST90565870-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565870)  
-[![GWASCatalog GCST90565871](https://img.shields.io/badge/GWASCatalog-GCST90565871-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565871)  
-[![GWASCatalog GCST90565872](https://img.shields.io/badge/GWASCatalog-GCST90565872-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565872) 
+[![GWASCatalog GCST90565869](https://img.shields.io/badge/GWASCatalog-GCST90565869-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565869): Female GWAS  
+[![GWASCatalog GCST90565870](https://img.shields.io/badge/GWASCatalog-GCST90565870-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565870): Male GWAS  
+[![GWASCatalog GCST90565871](https://img.shields.io/badge/GWASCatalog-GCST90565871-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565871): genotype-by-sex interaction (X chromosome with full dosage compensation)
+[![GWASCatalog GCST90565872](https://img.shields.io/badge/GWASCatalog-GCST90565872-brightgreen)](https://www.ebi.ac.uk/gwas/studies/GCST90565872): genotype-by-sex interaction (X chromosome with no dosage compensation)
 
 ## Cohorts
 * The Australian Genetics of Depression Study (AGDS) in Australia
